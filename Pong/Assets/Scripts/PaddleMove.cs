@@ -12,19 +12,9 @@ public class PaddleMove : MonoBehaviour
 
         float vertPress = Input.GetAxisRaw("Vertical");
 
-        GetComponent<Rigidbody2D>().velocity = new Vector2(0, vertPress) * speed;
+        GetComponent<Rigidbody2D>().velocity = 
+            new Vector2(0, vertPress) * speed;
 
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
