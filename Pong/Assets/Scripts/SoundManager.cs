@@ -15,7 +15,6 @@ public class SoundManager : MonoBehaviour
 
     private AudioSource soundEffectAudio;
 
-    // Start is called before the first frame update
     void Start()
     {
         
@@ -26,7 +25,7 @@ public class SoundManager : MonoBehaviour
         }else if(Instance != this)
         {
             Destroy(gameObject);
-        }
+        } //사운드 매니저 인스턴스(static)의 중복 검사
 
         AudioSource[] sources = GetComponents<AudioSource>();
 

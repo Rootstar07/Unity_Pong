@@ -14,31 +14,32 @@ public class Ball : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         rigidBody = GetComponent<Rigidbody2D>();
-        rigidBody.velocity = Vector2.right * speed;
+        rigidBody.velocity = Vector2.right * speed; //vector2.right는 vector(1, 0)과 같음
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //패들에 맞을 때
+        
         if ((collision.gameObject.name == "LeftPaddle") || 
-            (collision.gameObject.name == "RightPaddle"))
+            (collision.gameObject.name == "RightPaddle")) //패들에 맞을 때
         {
 
             handlePaddleHit(collision);
 
         }
 
-        //위아래 벽에 맞았을 때
+        
         if ((collision.gameObject.name == "TopWall") ||
-            (collision.gameObject.name == "BottomWall"))
+            (collision.gameObject.name == "BottomWall")) //위아래 벽에 맞았을 때
         {
             SoundManager.Instance.PlayOneShot(SoundManager.Instance.WallSound);
         }
 
-        //점수 판정
+        
         if ((collision.gameObject.name == "LeftWall") ||
-            (collision.gameObject.name == "RightWall"))
+            (collision.gameObject.name == "RightWall")) //점수 판정
         {
             SoundManager.Instance.PlayOneShot(SoundManager.Instance.goalBloop);
 
