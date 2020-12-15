@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Ball : MonoBehaviour
 { 
 
-    public float speed = 30;
+    public float speed = 60;
 
     private Rigidbody2D rigidBody;
 
@@ -43,7 +44,15 @@ public class Ball : MonoBehaviour
         {
             SoundManager.Instance.PlayOneShot(SoundManager.Instance.goalBloop);
 
-            //todo 점수 ui
+            if(collision.gameObject.name == "LeftWall")
+            {
+                IncreaseTextScoreUI("RightScoreUI");
+            }
+
+            if (collision.gameObject.name == "RightWall")
+            {
+                IncreaseTextScoreUI("LeftScoreUI");
+            }
 
             transform.position = new Vector2(0, 0);
         }
@@ -72,10 +81,22 @@ public class Ball : MonoBehaviour
 
     }
 
-    float ballHitPaddleWhere(Vector2 ball, Vector2 paddle,
-        float paddleHeight)
+    float ballHitPaddleWhere(Vector2 ball, Vector2 paddle, float paddleHeight)
     {
         return (ball.y = paddle.y) / paddleHeight;
+    }
+
+    //점수 관리
+    void IncreaseTextScoreUI(string textUIName)
+    {
+        var textUIComp = GameObject.Find(textUIName)
+            .GetComponent<Text>();
+
+        int score = int.Parse(textUIComp.text);
+
+        score++;
+
+        textUIComp.text = score.ToString();
     }
     
 
